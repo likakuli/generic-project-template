@@ -1,0 +1,46 @@
+{{define "dao_sqlx_getall.go.tmpl"}}
+// GetAll{{.StructName}} is a function to get a slice of record(s) from {{.TableName}} table in the {{.DatabaseName}} database
+// params - page     - page requested (defaults to 0)
+// params - pagesize - number of records in a page  (defaults to 20)
+// params - order    - db sort order column
+// error - ErrNotFound, db Find error
+func GetAll{{.StructName}}(ctx context.Context, page, pagesize int64, order string) (results []*{{.modelPackageName}}.{{.StructName}}, totalRows int, err error) {
+	sql := "{{.selectMultiSql}}"
+
+	if order != "" {
+		if strings.ContainsAny(order, "'\"") {
+			order = ""
+		}
+	}
+
+	if order == "" {
+		order = "{{.PrimaryKeysJoined}}"
+	}
+
+	if DB.DriverName() == "mssql" {
+		sql = fmt.Sprintf("%s order by %s OFFSET %d ROWS FETCH FIRST %d ROWS ONLY", sql, order, page, pagesize)
+	} else if DB.DriverName() == "postgres" {
+		sql = fmt.Sprintf("%s order by `%s` OFFSET %d LIMIT %d", sql, order, page, pagesize)
+	} else {
+		sql = fmt.Sprintf("%s order by `%s` LIMIT %d, %d", sql, order, page, pagesize)
+	}
+	sql = DB.Rebind(sql)
+
+	if Logger != nil {
+		Logger(ctx, sql)
+	}
+
+	err = DB.SelectContext(ctx, &results, sql)
+	if err != nil {
+		return nil, -1, err
+	}
+
+	cnt , err := GetRowCount(ctx, "{{.TableName}}")
+	if err != nil {
+		return results, -2, err
+	}
+
+	return results, cnt, err
+}
+
+{{end}}

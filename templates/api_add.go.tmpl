@@ -1,0 +1,49 @@
+{{define "api_add.go.tmpl"}}
+// Add{{.StructName}} add to add a single record to {{.TableName}} table in the {{.DatabaseName}} database
+// @Summary Add an record to {{.TableName}} table
+// @Description add to add a single record to {{.TableName}} table in the {{.DatabaseName}} database
+// @Tags {{.StructName}}
+// @Accept  json
+// @Produce  json
+// @Param {{.StructName}} body {{.modelPackageName}}.{{.StructName}} true "Add {{.StructName}}"
+// @Success 200 {object} {{.modelPackageName}}.{{.StructName}}
+// @Failure 400 {object} {{.apiPackageName}}.HTTPError
+// @Failure 404 {object} {{.apiPackageName}}.HTTPError
+// @Router /{{.StructName | toLower}} [post]
+// echo '{{ToJSON .TableInfo.Instance 0}}' | http POST "{{$.serverScheme}}://{{$.serverHost}}{{if ne $.serverPort 80}}:{{$.serverPort}}{{end}}/{{.StructName | toLower}}" X-Api-User:user123
+func Add{{.StructName}}(c *gin.Context) {
+	ctx := initializeContext(r)
+	{{.StructName | toLower}} := &{{.modelPackageName}}.{{.StructName}}{}
+
+	if err := readJSON(r, {{.StructName | toLower}}); err != nil {
+		returnError(ctx, w, r, {{.daoPackageName}}.ErrBadParams)
+		return
+	}
+
+
+   if err := {{.StructName | toLower}}.BeforeSave(); err != nil {
+      returnError(ctx, w, r, {{.daoPackageName}}.ErrBadParams)
+   }
+
+   {{.StructName | toLower}}.Prepare()
+
+   if err := {{.StructName | toLower}}.Validate({{.modelPackageName}}.Create); err != nil {
+      returnError(ctx, w, r, {{.daoPackageName}}.ErrBadParams)
+      return
+   }
+
+	if err := ValidateRequest(ctx, r, "{{.TableName}}", {{.modelPackageName}}.Create); err != nil{
+		returnError(ctx, w, r, err)
+		return
+	}
+
+    var err error
+	{{.StructName | toLower}}, _, err = {{.daoPackageName}}.Add{{.StructName}}(ctx, {{.StructName | toLower}})
+	if err != nil {
+		returnError(ctx, w, r, err)
+		return
+	}
+
+	writeJSON(ctx, w, {{.StructName | toLower}})
+}
+{{end}}

@@ -1,0 +1,100 @@
+--- /home/leopoldxx/workspace/code/golang/src/github.com/golang/glog/glog.go	2016-08-08 17:26:19.060000000 +0800
++++ glog.go	2016-09-29 10:15:46.659874000 +0800
+@@ -559,24 +559,32 @@
+ 
+ 	// Avoid Fprintf, for speed. The format is so simple that we can do it quickly by hand.
+ 	// It's worth about 3X. Fprintf is hard.
+-	_, month, day := now.Date()
++	year, month, day := now.Date()
+ 	hour, minute, second := now.Clock()
+ 	// Lmmdd hh:mm:ss.uuuuuu threadid file:line]
+-	buf.tmp[0] = severityChar[s]
+-	buf.twoDigits(1, int(month))
+-	buf.twoDigits(3, day)
+-	buf.tmp[5] = ' '
+-	buf.twoDigits(6, hour)
+-	buf.tmp[8] = ':'
+-	buf.twoDigits(9, minute)
+-	buf.tmp[11] = ':'
+-	buf.twoDigits(12, second)
+-	buf.tmp[14] = '.'
+-	buf.nDigits(6, 15, now.Nanosecond()/1000, '0')
+-	buf.tmp[21] = ' '
+-	buf.nDigits(7, 22, pid, ' ') // TODO: should be TID
+-	buf.tmp[29] = ' '
+-	buf.Write(buf.tmp[:30])
++	for i := 0; i < 9; i++ {
++		buf.tmp[i] = ' '
++	}
++	for i := 0; i < len(severityName[s]); i++ {
++		buf.tmp[i] = severityName[s][i]
++	}
++	buf.nDigits(4, 9, int(year), ' ')
++	buf.tmp[13] = '-'
++	buf.twoDigits(14, int(month))
++	buf.tmp[16] = '-'
++	buf.twoDigits(17, day)
++	buf.tmp[19] = ' '
++	buf.twoDigits(20, hour)
++	buf.tmp[22] = ':'
++	buf.twoDigits(23, minute)
++	buf.tmp[25] = ':'
++	buf.twoDigits(26, second)
++	buf.tmp[28] = '.'
++	buf.nDigits(6, 29, now.Nanosecond()/1000, '0')
++	buf.tmp[35] = ' '
++	buf.nDigits(7, 36, pid, ' ') // TODO: should be TID
++	buf.tmp[43] = ' '
++	buf.Write(buf.tmp[:44])
+ 	buf.WriteString(file)
+ 	buf.tmp[0] = ':'
+ 	n := buf.someDigits(1, line)
+@@ -646,6 +654,15 @@
+ 	l.output(s, buf, file, line, false)
+ }
+ 
++func (l *loggingT) printfDepth(s severity, format string, depth int, args ...interface{}) {
++	buf, file, line := l.header(s, depth)
++	fmt.Fprintf(buf, format, args...)
++	if buf.Bytes()[buf.Len()-1] != '\n' {
++		buf.WriteByte('\n')
++	}
++	l.output(s, buf, file, line, false)
++}
++
+ func (l *loggingT) printf(s severity, format string, args ...interface{}) {
+ 	buf, file, line := l.header(s, 0)
+ 	fmt.Fprintf(buf, format, args...)
+@@ -1067,6 +1084,10 @@
+ 	logging.println(infoLog, args...)
+ }
+ 
++func InfofDepth(format string, depth int, args ...interface{}) {
++	logging.printfDepth(infoLog, format, depth, args...)
++}
++
+ // Infof logs to the INFO log.
+ // Arguments are handled in the manner of fmt.Printf; a newline is appended if missing.
+ func Infof(format string, args ...interface{}) {
+@@ -1097,6 +1118,10 @@
+ 	logging.printf(warningLog, format, args...)
+ }
+ 
++func WarningfDepth(format string, depth int, args ...interface{}) {
++	logging.printfDepth(warningLog, format, depth, args...)
++}
++
+ // Error logs to the ERROR, WARNING, and INFO logs.
+ // Arguments are handled in the manner of fmt.Print; a newline is appended if missing.
+ func Error(args ...interface{}) {
+@@ -1121,6 +1146,10 @@
+ 	logging.printf(errorLog, format, args...)
+ }
+ 
++func ErrorfDepth(format string, depth int, args ...interface{}) {
++	logging.printfDepth(errorLog, format, depth, args...)
++}
++
+ // Fatal logs to the FATAL, ERROR, WARNING, and INFO logs,
+ // including a stack trace of all running goroutines, then calls os.Exit(255).
+ // Arguments are handled in the manner of fmt.Print; a newline is appended if missing.

@@ -1,0 +1,12 @@
+[server]
+port = "8080"
+mode = "debug"
+api_qps = 200
+
+[common]
+debugLevel = 1
+
+[db]
+connectionString = "root:123456@tcp(172.17.8.101:3306)/modelarts?charset=utf8mb4&parseTime=True&loc=Local"
+maxOpenConn = 200
+maxIdleConn = 200

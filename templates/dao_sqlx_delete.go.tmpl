@@ -1,0 +1,20 @@
+{{define "dao_sqlx_delete.go.tmpl"}}
+// Delete{{.StructName}} is a function to delete a single record from {{.TableName}} table in the {{.DatabaseName}} database
+// error - ErrNotFound, db Find error
+// error - ErrDeleteFailed, db Delete failed error
+func Delete{{.StructName}}(ctx context.Context,{{range $field := .TableInfo.CodeFields}} {{ if $field.PrimaryKeyArgName }} {{$field.PrimaryKeyArgName}} {{$field.GoFieldType}},{{end}}{{end -}}) (rowsAffected int64, err error) {
+	sql := "{{.delSql}}"
+	sql = DB.Rebind(sql)
+
+	if Logger != nil {
+		Logger(ctx, sql)
+	}
+
+	result, err := DB.ExecContext(ctx, sql, {{range $field := .TableInfo.CodeFields}} {{ if $field.PrimaryKeyArgName }} {{$field.PrimaryKeyArgName}},{{end}}{{end -}} )
+	if err != nil {
+		return 0, err
+	}
+
+	return result.RowsAffected()
+}
+{{end}}
