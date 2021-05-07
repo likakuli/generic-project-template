@@ -1,2 +1,2 @@
-# k8s-style-project-template
-k8s风格的通用项目模板
+# generic-project-template
+通用restful api & command line项目模板
