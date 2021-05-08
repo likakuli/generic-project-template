@@ -22,5 +22,5 @@ COMPILE_LDFLAGS := -X "${PATH}.BuildDate=${DATE}" \
 						  -X "${PATH}.RuntimeVer=${RUNTIME_VER}"
 
 generic-project-template:
-	@echo ${PWD}
+	@pwd
 	@go build -ldflags '${COMPILE_LDFLAGS}' -o generic-project-template ./cmd/apiserver/apiserver.go
