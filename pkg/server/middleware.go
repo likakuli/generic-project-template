@@ -9,7 +9,7 @@ import (
 
 var (
 	once sync.Once
-	rl ratelimit.Limiter
+	rl   ratelimit.Limiter
 )
 
 func leakyBucketRateLimiter(qps int) gin.HandlerFunc {

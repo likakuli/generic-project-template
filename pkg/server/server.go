@@ -14,7 +14,7 @@ type Server struct {
 	engine *gin.Engine
 }
 
-func NewServer(port string, mode string,qps int) *Server {
+func NewServer(port string, mode string, qps int) *Server {
 	engine := gin.Default()
 
 	gin.SetMode(mode)

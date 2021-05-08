@@ -11,9 +11,9 @@ type CommonConfig struct {
 }
 
 type ServerConfig struct {
-	Port string `mapstructure:"port"`
-	Mode string `mapstructure:"mode"`
-	API_QPS int `mapstructure:"api_qps"`
+	Port    string `mapstructure:"port"`
+	Mode    string `mapstructure:"mode"`
+	API_QPS int    `mapstructure:"api_qps"`
 }
 
 type DBConfig struct {

@@ -117,7 +117,7 @@ func Run(ctx context.Context, cfg *config.Config) error {
 	ctx, cancel := context.WithCancel(ctx)
 	defer cancel()
 
-	server.NewServer(cfg.Server.Port, cfg.Server.Mode).Run(ctx)
+	server.NewServer(cfg.Server.Port, cfg.Server.Mode, cfg.Server.API_QPS).Run(ctx)
 
 	return nil
 }
