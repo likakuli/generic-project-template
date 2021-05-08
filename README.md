@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/likakuli/generic-project-template.svg?branch=master)](https://travis-ci.com/likakuli/generic-project-template)
 ## GenericProjectTemplate
 
 编译：  
