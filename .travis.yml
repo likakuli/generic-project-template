@@ -1,0 +1,13 @@
+language:
+  - go
+go:
+  - "1.16.3"
+
+sudo: required
+
+os:
+  - linux
+  - osx
+
+script:
+  - make
