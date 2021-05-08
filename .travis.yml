@@ -3,7 +3,6 @@ language:
 
 go:
   - "1.16.x"
-  - master
 
 branches:
   only:
