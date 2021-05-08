@@ -1,15 +1,13 @@
 language:
   - go
+
 go:
-  - "1.16.3"
+  - "1.16.x"
+  - master
 
 branches:
   only:
     - dev
-
-os:
-  - linux
-  - osx
 
 script:
   - make
