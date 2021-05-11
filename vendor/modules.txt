@@ -1,7 +1,14 @@
+# github.com/afex/hystrix-go v0.0.0-20180502004556-fa1af6a1f4f5
+## explicit
+github.com/afex/hystrix-go/hystrix
+github.com/afex/hystrix-go/hystrix/metric_collector
+github.com/afex/hystrix-go/hystrix/rolling
 # github.com/andres-erbsen/clock v0.0.0-20160526145045-9e14626cd129
 github.com/andres-erbsen/clock
 # github.com/beorn7/perks v1.0.0
 github.com/beorn7/perks/quantile
+# github.com/davecgh/go-spew v1.1.1
+github.com/davecgh/go-spew/spew
 # github.com/fsnotify/fsnotify v1.4.7
 github.com/fsnotify/fsnotify
 # github.com/gin-contrib/pprof v1.3.0
@@ -23,6 +30,8 @@ github.com/go-playground/locales/currency
 github.com/go-playground/universal-translator
 # github.com/go-playground/validator/v10 v10.4.1
 github.com/go-playground/validator/v10
+# github.com/go-sql-driver/mysql v1.6.0
+github.com/go-sql-driver/mysql
 # github.com/golang/glog v0.0.0-20210429001901-424d2337a529
 ## explicit
 github.com/golang/glog
@@ -41,11 +50,10 @@ github.com/hashicorp/hcl/json/scanner
 github.com/hashicorp/hcl/json/token
 # github.com/inconshreveable/mousetrap v1.0.0
 github.com/inconshreveable/mousetrap
-# github.com/jinzhu/gorm v1.9.16
-## explicit
-github.com/jinzhu/gorm
 # github.com/jinzhu/inflection v1.0.0
 github.com/jinzhu/inflection
+# github.com/jinzhu/now v1.1.2
+github.com/jinzhu/now
 # github.com/json-iterator/go v1.1.9
 github.com/json-iterator/go
 # github.com/leodido/go-urn v1.2.0
@@ -71,6 +79,8 @@ github.com/modern-go/reflect2
 github.com/nu7hatch/gouuid
 # github.com/pelletier/go-toml v1.2.0
 github.com/pelletier/go-toml
+# github.com/pmezard/go-difflib v1.0.0
+github.com/pmezard/go-difflib/difflib
 # github.com/prometheus/client_golang v0.9.3
 ## explicit
 github.com/prometheus/client_golang/prometheus
@@ -101,6 +111,12 @@ github.com/spf13/pflag
 # github.com/spf13/viper v1.7.1
 ## explicit
 github.com/spf13/viper
+# github.com/stretchr/objx v0.1.1
+github.com/stretchr/objx
+# github.com/stretchr/testify v1.6.1
+## explicit
+github.com/stretchr/testify/assert
+github.com/stretchr/testify/mock
 # github.com/subosito/gotenv v1.2.0
 github.com/subosito/gotenv
 # github.com/ugorji/go/codec v1.1.7
@@ -110,13 +126,30 @@ github.com/ugorji/go/codec
 go.uber.org/ratelimit
 # golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9
 golang.org/x/crypto/sha3
-# golang.org/x/sys v0.0.0-20200323222414-85ca7c5b95cd
+# golang.org/x/sys v0.0.0-20210119212857-b64e53b001e4
+## explicit
 golang.org/x/sys/cpu
+golang.org/x/sys/internal/unsafeheader
 golang.org/x/sys/unix
-# golang.org/x/text v0.3.2
+# golang.org/x/text v0.3.3
+## explicit
 golang.org/x/text/transform
 golang.org/x/text/unicode/norm
 # gopkg.in/ini.v1 v1.51.0
 gopkg.in/ini.v1
 # gopkg.in/yaml.v2 v2.4.0
 gopkg.in/yaml.v2
+# gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c
+gopkg.in/yaml.v3
+# gorm.io/driver/mysql v1.0.6
+## explicit
+gorm.io/driver/mysql
+# gorm.io/gorm v1.21.9
+## explicit
+gorm.io/gorm
+gorm.io/gorm/callbacks
+gorm.io/gorm/clause
+gorm.io/gorm/logger
+gorm.io/gorm/migrator
+gorm.io/gorm/schema
+gorm.io/gorm/utils

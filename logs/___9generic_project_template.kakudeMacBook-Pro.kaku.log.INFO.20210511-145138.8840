@@ -1,0 +1,17 @@
+Log file created at: 2021/05/11 14:51:38
+Running on machine: kakudeMacBook-Pro
+Binary: Built with gc go1.16.3 for darwin/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0511 14:51:38.641636    8840 options.go:57] FLAG: --alsologtostderr="false"
+I0511 14:51:38.646822    8840 options.go:57] FLAG: --config="./conf/config.toml"
+I0511 14:51:38.646841    8840 options.go:57] FLAG: --help="false"
+I0511 14:51:38.646852    8840 options.go:57] FLAG: --log_backtrace_at=":0"
+I0511 14:51:38.646865    8840 options.go:57] FLAG: --log_dir="./logs"
+I0511 14:51:38.646906    8840 options.go:57] FLAG: --logtostderr="false"
+I0511 14:51:38.646919    8840 options.go:57] FLAG: --stderrthreshold="2"
+I0511 14:51:38.646925    8840 options.go:57] FLAG: --v="2"
+I0511 14:51:38.646930    8840 options.go:57] FLAG: --version="false"
+I0511 14:51:38.646935    8840 options.go:57] FLAG: --vmodule=""
+I0511 14:51:38.654557    8840 options.go:49] unmarshal config file: {0xc0004b2810 0xc00048cc90 0xc0004b41c0}
+I0511 14:51:38.654727    8840 server.go:115] Starting server.
+I0511 14:51:45.032714    8840 server.go:43] server started..

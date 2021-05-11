@@ -17,3 +17,14 @@ generic-project-template
 
 # ide
 .idea/*
+
+# make
+tmp.out
+coverage.out
+
+# config
+./conf/config.toml
+
+# log
+./logs
+./logs/*

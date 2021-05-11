@@ -46,7 +46,7 @@ func (o *Option) Complete() (*config.Config, error) {
 		return nil, err
 	}
 
-	glog.V(1).Info("unmarshal config file: %v", cfg)
+	glog.V(1).Infof("unmarshal config file: %v", cfg)
 
 	return &cfg, nil
 }

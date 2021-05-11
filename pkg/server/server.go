@@ -4,37 +4,46 @@ import (
 	"context"
 	"time"
 
-	"github.com/likakuli/generic-project-template/pkg/api"
-
 	"github.com/gin-gonic/gin"
+	"github.com/golang/glog"
+
+	"github.com/likakuli/generic-project-template/pkg/config"
+	"github.com/likakuli/generic-project-template/pkg/server/middlewares"
 )
 
 type Server struct {
-	port   string
-	engine *gin.Engine
+	port      string
+	engine    *gin.Engine
+	container IContainer
 }
 
-func NewServer(port string, mode string, qps int) *Server {
+func NewServer(cfg *config.Config) *Server {
 	engine := gin.Default()
 
-	gin.SetMode(mode)
+	gin.SetMode(cfg.Server.Mode)
 
-	// middlewares
+	// use middlewares
 	engine.Use(gin.Recovery())
-	engine.Use(leakyBucketRateLimiter(qps))
+	engine.Use(middlewares.LeakyBucketRateLimiter(cfg.Server.API_QPS))
 
-	// routers
-	api.ConfigRouter(engine)
+	// init container
+	container := defaultControllerContainer(cfg.DB)
+	// register routers
+	configRouter(engine, container)
 
 	return &Server{
-		port:   port,
-		engine: engine,
+		port:      cfg.Server.Port,
+		engine:    engine,
+		container: container,
 	}
 }
 
 func (s *Server) Run(ctx context.Context) {
 	go s.engine.Run(":" + s.port)
+	glog.Info("server started..")
+	defer s.container.Dispose()
 
 	<-ctx.Done()
+	glog.Infof("server stopped..")
 	time.Sleep(1 * time.Second)
 }

@@ -1,0 +1,13 @@
+[server]
+port = "8080"
+mode = "debug"
+api_qps = 200
+
+[common]
+debugLevel = 1
+
+[db]
+# set connectionString as you expected
+connectionString = "root:123456@tcp(ip:3306)/test?charset=utf8mb4&parseTime=True&loc=Local"
+maxOpenConn = 200
+maxIdleConn = 200

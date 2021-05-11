@@ -1,0 +1,17 @@
+CREATE DATABASE IF NOT EXISTS test;
+
+USE test;
+
+DROP TABLE IF EXISTS `players`;
+CREATE TABLE `players` (
+    `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(32) NOT NULL,
+    `score` VARCHAR(64),
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `deleted_at` TIMESTAMP DEFAULT ,
+    PRIMARY KEY (`id`)
+) ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+INSERT INTO players(id,name,score) values(101,"Lucy",3);
+INSERT INTO players(id,name,score) values(102,"Lily",1);

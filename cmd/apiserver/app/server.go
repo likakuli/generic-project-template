@@ -54,7 +54,7 @@ func NewServerCommand() *cobra.Command {
 	opts := options.NewOptions()
 	cmd := &cobra.Command{
 		Use:                "generic-project-template",
-		Long:               "A generic restful api and command line project template.",
+		Long:               "A generic restful controllers and command line project template.",
 		DisableFlagParsing: true,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			defer glog.Flush()
@@ -117,7 +117,7 @@ func Run(ctx context.Context, cfg *config.Config) error {
 	ctx, cancel := context.WithCancel(ctx)
 	defer cancel()
 
-	server.NewServer(cfg.Server.Port, cfg.Server.Mode, cfg.Server.API_QPS).Run(ctx)
+	server.NewServer(cfg).Run(ctx)
 
 	return nil
 }

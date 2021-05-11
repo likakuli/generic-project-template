@@ -9,4 +9,7 @@ branches:
     - master
 
 script:
-  - make
+  - make vet
+  - make fmt-check
+  - make test
+  - make build

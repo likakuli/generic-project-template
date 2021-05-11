@@ -7,6 +7,7 @@ api_qps = 200
 debugLevel = 1
 
 [db]
-connectionString = "root:123456@tcp(172.17.8.101:3306)/modelarts?charset=utf8mb4&parseTime=True&loc=Local"
+# set connectionString as you expected
+connectionString = "root:123456@tcp(172.17.0.2:3306)/test?charset=utf8mb4&parseTime=True&loc=Local"
 maxOpenConn = 200
 maxIdleConn = 200
