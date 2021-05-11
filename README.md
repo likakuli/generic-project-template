@@ -109,10 +109,10 @@ type playerService struct {
   /- models
   /- repositories
   /- server
-  	/- middlewares
-	|- container.go
-	|- router.go
-	|- server.go
+    /- middlewares
+    |- container.go
+    |- router.go
+    |- server.go
   /- services
   /- viewmodels
 ```
