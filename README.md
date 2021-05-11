@@ -27,19 +27,19 @@
 
 **克隆项目代码**
 
-```
+```shell
 git clone https://github.com/likakuli/generic-project-template.git
-```   
+```
 
 **启动mysql服务并初始化数据库**
 
-```
+```shell
 docker run --name=mysql -it -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d registry.cn-beijing.aliyuncs.com/likakuli/mysql
 ```
 
 **注意**：如果是在MacOS上使用Docker for Mac启动的容器，则需要安装 [docker-connector](https://github.com/wenjunxiao/mac-docker-connector) ，否则无法在本机通过容器IP访问容器，因为参考[这里](https://docs.docker.com/docker-for-mac/networking/#there-is-no-docker0-bridge-on-macos)。安装命令如下
 
-```
+```shell
 # 安装 docker-connector
 brew install wenjunxiao/brew/docker-connector  
 # 把 docker 的所有 bridge 网络都添加到路由中
@@ -54,19 +54,19 @@ docker run -it -d --restart always --net host --cap-add NET_ADMIN --name connect
 
 **运行单元测试**
 
-```
+```shell
 make test
 ```
 
 **编译程序**
 
-```
+```shell
 make build
 ```
 
 **运行程序**
 
-```
+```shell
 # 替换配置文件MySQL connectionString
 ./docker/replace_ip.sh
 # 启动程序
@@ -75,7 +75,7 @@ make build
 
 **访问程序**
 
-```
+```shell
 curl http://localhost:8080/api/v1/score/Lucy/vs/Lily
 ```
 
@@ -87,7 +87,7 @@ curl http://localhost:8080/api/v1/score/Lucy/vs/Lily
 
 `IPlayerServie --> IPlayerRepository`
 
-```
+```go
 type PlayerController struct {
 	service interfaces.IPlayerService
 }
@@ -98,23 +98,23 @@ type playerService struct {
 ```
 ### 目录结构
 
-```
+```text
 /cmd
-	/- apiserver
+  /- apiserver
 /conf
 /pkg
-	/- config
-	/- controllers
-	/- interfaces
-	/- models
-	/- repositories
-	/- server
-		/- middlewares
-		|- container.go
-		|- router.go
-		|- server.go
-	/- services
-	/- viewmodels
+  /- config
+  /- controllers
+  /- interfaces
+  /- models
+  /- repositories
+  /- server
+  	/- middlewares
+	|- container.go
+	|- router.go
+	|- server.go
+  /- services
+  /- viewmodels
 ```
 **controllers**
 
@@ -152,9 +152,9 @@ type playerService struct {
 
 为方便进行单元测试，使用`Mockery`自动`interfaces`下接口实现，例如生成`IPlayerService的实现`，只需要进入`interfaces`文件夹下执行如下命令即可，最后会在`interfaces`下自动创建`mocks`文件夹来存放自动生成的文件。
 
-```
+```shell
 mockery -name=IPlayerService
-```  
+```
 
 需要提前安装`mokery`工具
 
