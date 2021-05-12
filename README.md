@@ -133,11 +133,11 @@ type playerService struct {
 
 **services**
 
-服务文件夹下存放所有实现了`services`下定义的`IService`接口的逻辑，共`controllers`直接使用。其中涉及到的数据库访问部分均通过调用`interfaces`下的`IRepository`接口实现，不依赖任何具体实现。
+服务文件夹下存放所有实现了`services`下定义的`IService`接口的逻辑，供`controllers`直接使用。其中涉及到的数据库访问部分均通过调用`interfaces`下的`IRepository`接口实现，不依赖任何具体实现。
 
 **viewmodels**
 
-视图模型文件夹下存放所有需要与API交互的实体，主要包含从API获取到的结构和返回值得结构。与`models`的区别在于前者对应api层，后者对应数据库层。
+视图模型文件夹下存放所有需要与API交互的实体，主要包含从API获取到的结构和返回值的结构。与`models`的区别在于前者对应api层，后者对应数据库层。
 
 **router**
 
