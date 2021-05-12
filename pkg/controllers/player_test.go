@@ -18,7 +18,7 @@ func TestGetPlayerScore(t *testing.T) {
 	playerService := mocks.IPlayerService{}
 
 	playerService.On("GetScores", context.Background(), "Lucy", "Lily").Return("Forty-Fifteen", nil)
-	playerController := GetDefaultPlayerController(&playerService)
+	playerController := NewPlayerController(&playerService)
 
 	req := httptest.NewRequest(http.MethodGet, "http://localhost:8080/api/v1/score/Lucy/vs/Lily", nil)
 	w := httptest.NewRecorder()

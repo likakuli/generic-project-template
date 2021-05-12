@@ -26,7 +26,7 @@ func TestGetScores(t *testing.T) {
 	playerRepo.On("GetPlayerByName", "Lucy").Return(&player1, nil)
 	playerRepo.On("GetPlayerByName", "Lily").Return(&player2, nil)
 
-	playerService := GetDefaultPlayerService(&playerRepo)
+	playerService := NewPlayerService(&playerRepo)
 
 	expectedResult := "Forty-Fifteen"
 	actualResult, _ := playerService.GetScores(context.Background(), "Lucy", "Lily")
