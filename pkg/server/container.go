@@ -88,5 +88,5 @@ func configMetricsRouter(router gin.IRouter, container IContainer) {
 func (c *container) GetPlayerController() *controllers.PlayerController {
 	return controllers.NewPlayerController(
 		services.NewPlayerService(
-			repositories.GetDefaultPlayerRepository(c.db)))
+			repositories.NewPlayerRepository(c.db)))
 }

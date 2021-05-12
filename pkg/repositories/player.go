@@ -45,7 +45,7 @@ func (repository *PlayerRepositoryWithCircuitBreaker) GetPlayerByName(name strin
 	}
 }
 
-func GetDefaultPlayerRepository(db *gorm.DB) *PlayerRepository {
+func NewPlayerRepository(db *gorm.DB) *PlayerRepository {
 	return &PlayerRepository{
 		db: db,
 	}
