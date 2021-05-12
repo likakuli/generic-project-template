@@ -36,7 +36,7 @@ git clone https://github.com/likakuli/generic-project-template.git
 docker run --name=mysql -it -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d registry.cn-beijing.aliyuncs.com/likakuli/mysql
 ```
 
-**注意**：如果是在MacOS上使用Docker for Mac启动的容器，则需要安装 [docker-connector](https://github.com/wenjunxiao/mac-docker-connector) ，否则无法在本机通过容器IP访问容器，因为参考[这里](https://docs.docker.com/docker-for-mac/networking/#there-is-no-docker0-bridge-on-macos)。安装命令如下
+**注意**：如果是在MacOS上使用Docker for Mac启动的容器，则需要安装 [docker-connector](https://github.com/wenjunxiao/mac-docker-connector) ，否则无法在本机通过容器IP访问容器，原因参考[这里](https://docs.docker.com/docker-for-mac/networking/#there-is-no-docker0-bridge-on-macos)。安装命令如下
 
 ```shell
 # 安装 docker-connector
