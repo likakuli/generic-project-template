@@ -60,6 +60,7 @@ github.com/json-iterator/go
 github.com/leodido/go-urn
 # github.com/leopoldxx/go-utils v0.0.0-20180704120643-39cffea1dab6
 ## explicit
+github.com/leopoldxx/go-utils/httputils
 github.com/leopoldxx/go-utils/trace
 github.com/leopoldxx/go-utils/trace/glog
 # github.com/magiconair/properties v1.8.1

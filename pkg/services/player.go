@@ -47,7 +47,7 @@ func (service *playerService) GetScores(ctx context.Context, player1Name string,
 	return result, nil
 }
 
-func GetDefaultPlayerService(repo interfaces.IPlayerRepository) *playerService {
+func NewPlayerService(repo interfaces.IPlayerRepository) *playerService {
 	return &playerService{
 		repo: repo,
 	}
